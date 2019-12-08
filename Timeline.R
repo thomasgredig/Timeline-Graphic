@@ -57,6 +57,18 @@ year_date_range <- as.Date(
 year_format <- format(year_date_range, '%Y')
 year_df <- data.frame(year_date_range, year_format)
 
+if(nrow(year_df)==0) {
+  year_date_range <- seq((min(n$Date.formatted) - months(month_buffer))-365, max(n$Date.formatted) + months(month_buffer), by='year')
+  year_date_range <- as.Date(
+    intersect(
+      ceiling_date(year_date_range, unit="year"),
+      floor_date(year_date_range, unit="year")
+    ),  origin = "1970-01-01"
+  )
+  year_format <- format(year_date_range, '%Y')
+  year_df <- data.frame(year_date_range, year_format)
+  year_df$year_date_range = min(n$Date.formatted) + 20
+}
 
 
 status_levels <- levels(n$Instrument) #c("Complete", "On Target", "At Risk", "Critical")
