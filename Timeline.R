@@ -97,6 +97,3 @@ ggplot(n,aes(x=Date.formatted,y=0, col=Instrument)) +
   ggtitle(paste('Timeline: ',user.name))
 ggsave(file.path(path.FIGS, paste0(user.name, '-Timeline.png')),width=12,height=6, dpi=300)
 
-
-
-
